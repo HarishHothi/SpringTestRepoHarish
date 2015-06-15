@@ -18,6 +18,6 @@ public class IndexController {
 	@RequestMapping("/index")
 	public String getIndexPage(){
 		System.out.println("Here comes request");
-		return "/WEB-INF/index1.jsp";
+		return "index";
 	}
 }
