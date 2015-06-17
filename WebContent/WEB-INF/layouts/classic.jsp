@@ -40,7 +40,7 @@
             <ul class="nav navbar-nav">
               <li class="${current == 'index' ? 'active':'' }"><a href='<spring:url value="/index"></spring:url>'>Home</a></li>
               <li class="${current == 'users' ? 'active':'' }"><a href='<spring:url value="/users"></spring:url>'>Users</a></li>
-              <li class="${current == 'item' ? 'active':'' }"><a href="#">Contact</a></li>
+              <li class="${current == 'user-register' ? 'active':'' }"><a href='<spring:url value="/register"></spring:url>'>User Registration</a></li> <!-- here /register is request mapping user controller -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
