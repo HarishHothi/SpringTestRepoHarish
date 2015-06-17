@@ -53,4 +53,7 @@ public class UserContoller {
 		userService.save(user);
 		return "user-register";
 	}
+	public void TestGit(){
+		
+	}
 }
