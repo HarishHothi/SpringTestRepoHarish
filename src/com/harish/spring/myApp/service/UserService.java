@@ -3,6 +3,7 @@
  */
 package com.harish.spring.myApp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,13 +11,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.harish.spring.myApp.entity.Blog;
 import com.harish.spring.myApp.entity.Item;
+import com.harish.spring.myApp.entity.Role;
 import com.harish.spring.myApp.entity.User;
 import com.harish.spring.myApp.repository.BlogRepository;
 import com.harish.spring.myApp.repository.ItemRepository;
+import com.harish.spring.myApp.repository.RoleRepository;
 import com.harish.spring.myApp.repository.UserRepository;
 
 /**
@@ -29,14 +33,17 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private BlogRepository blogRepo;
-	
+
 	@Autowired
 	private ItemRepository itemRepo;
-	
-	public List<User> findAll(){
+
+	@Autowired
+	private RoleRepository roleRepo;
+
+	public List<User> findAll() {
 		return userRepo.findAll();
 	}
 
@@ -44,15 +51,23 @@ public class UserService {
 		return userRepo.findOne(id);
 	}
 
-	// all this database query is in one transaction so annotate this method as a transaction .
-	// if you will not annotate then you will get hibernate lazyLinitilizationException
-	
+	// all this database query is in one transaction so annotate this method as
+	// a transaction .
+	// if you will not annotate then you will get hibernate
+	// lazyLinitilizationException
+
 	@Transactional
 	public Object findoneWithBlogs(int id) {
 		User user = userRepo.findOne(id);
 		List<Blog> blogs = blogRepo.findBlogByUser(user);
-		for(Blog blog:blogs){
-			List<Item> items = itemRepo.findItemsByBlog(blog,new PageRequest(0, 10, Direction.DESC, "publishedDate")); // start page number, page size, page order , order by published date
+		for (Blog blog : blogs) {
+			List<Item> items = itemRepo.findItemsByBlog(blog, new PageRequest(
+					0, 10, Direction.DESC, "publishedDate")); // start page
+																// number, page
+																// size, page
+																// order , order
+																// by published
+																// date
 			blog.setItems(items);
 		}
 		user.setBlogs(blogs);
@@ -60,7 +75,12 @@ public class UserService {
 	}
 
 	public void save(User user) {
+		user.setEnabled(true);
+		BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
+		user.setPassword(bcryptEncoder.encode(user.getPassword()));
 		userRepo.save(user);
-		
+
+		// by default all the user has role ROLE_USER
+		List<Role> roles = new ArrayList<Role>();
 	}
 }

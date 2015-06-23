@@ -4,6 +4,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <html>
 <head>
@@ -39,21 +40,19 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="${current == 'index' ? 'active':'' }"><a href='<spring:url value="/index"></spring:url>'>Home</a></li>
-              <li class="${current == 'users' ? 'active':'' }"><a href='<spring:url value="/users"></spring:url>'>Users</a></li>
+              <security:authorize access="hasRole('ROLE_ADMIN')">
+              	<li class="${current == 'users' ? 'active':'' }"><a href='<spring:url value="/users"></spring:url>'>Users</a></li>
+              </security:authorize>
+              
               <li class="${current == 'user-register' ? 'active':'' }"><a href='<spring:url value="/register"></spring:url>'>User Registration</a></li> <!-- here /register is request mapping user controller -->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
-            </ul>
+              <security:authorize access="! isAuthenticated()">
+              	<li class="${current == 'login' ? 'active':'' }"><a href='<spring:url value="/login"></spring:url>'>Login</a></li>
+              </security:authorize>
+              
+              <security:authorize access="isAuthenticated()">
+              	<li><a href='<spring:url value="/logout"></spring:url>'>Logout</a></li>
+              </security:authorize>
+             </ul>
            </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>

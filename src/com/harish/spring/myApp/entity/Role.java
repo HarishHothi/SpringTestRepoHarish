@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -24,8 +23,7 @@ public class Role {
 	
 	private String name;
 	
-	@ManyToMany
-	@JoinTable
+	@ManyToMany(mappedBy="roles")
 	private List<User> users;
 
 	public List<User> getUsers() {

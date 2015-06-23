@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -18,19 +19,30 @@ import javax.persistence.OneToMany;
 @Entity
 public class User {
 
-	@Id // indicate below is primary key for current entity
+	@Id
+	// indicate below is primary key for current entity
 	@GeneratedValue
 	private int id;
 	private String name;
 	private String email;
 	private String password;
+	private boolean enabled;
 
 	@ManyToMany
+	@JoinTable
 	private List<Role> roles;
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	@OneToMany(mappedBy = "user")
 	private List<Blog> blogs;
-	
+
 	public List<Blog> getBlogs() {
 		return blogs;
 	}

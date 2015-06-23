@@ -2,9 +2,9 @@
 	<entity>
 		<entity-name>com.harish.spring.myApp.entity.User</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>206</entity-height>
-		<entity-X-Coordinate>280</entity-X-Coordinate>
-		<entity-Y-Coordinate>54</entity-Y-Coordinate>
+		<entity-height>226</entity-height>
+		<entity-X-Coordinate>366</entity-X-Coordinate>
+		<entity-Y-Coordinate>58</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -14,8 +14,8 @@
 		<entity-name>com.harish.spring.myApp.entity.Item</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>206</entity-height>
-		<entity-X-Coordinate>740</entity-X-Coordinate>
-		<entity-Y-Coordinate>86</entity-Y-Coordinate>
+		<entity-X-Coordinate>920</entity-X-Coordinate>
+		<entity-Y-Coordinate>70</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -25,8 +25,8 @@
 		<entity-name>com.harish.spring.myApp.entity.Blog</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>186</entity-height>
-		<entity-X-Coordinate>500</entity-X-Coordinate>
-		<entity-Y-Coordinate>48</entity-Y-Coordinate>
+		<entity-X-Coordinate>580</entity-X-Coordinate>
+		<entity-Y-Coordinate>61</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

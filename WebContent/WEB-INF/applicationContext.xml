@@ -37,4 +37,6 @@
 	</bean>
 	
 	<jpa:repositories base-package="com.harish.spring.myApp.repository" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager"></jpa:repositories>
+	
+	<import resource="security.xml"/>
 </beans>
